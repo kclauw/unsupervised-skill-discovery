@@ -220,7 +220,6 @@ class Experiment:
         with snapshot.open('wb') as f:
             torch.save(payload, f)
 
-
 @hydra.main(config_path="../configs", config_name="pretrain", version_base="1.1")
 def main(cfg: DictConfig) -> None:
     experiment = Experiment(cfg)
