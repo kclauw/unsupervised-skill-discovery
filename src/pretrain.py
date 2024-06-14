@@ -18,6 +18,7 @@ import envs.dmc as dmc
 from dm_env import specs
 from utils.replay_buffer import ReplayBufferStorage, make_replay_loader
 from utils.video import TrainVideoRecorder, VideoRecorder
+import numpy as np
 
 def make_agent(obs_type, obs_spec, action_spec, num_expl_steps, cfg):
     cfg.obs_type = obs_type
@@ -36,7 +37,7 @@ class Experiment:
         self.device = torch.device(cfg.device)
         
         # create logger
-        if cfg.wandb.enabled:
+        if cfg.use_wandb:
             exp_name = '_'.join([
                 cfg.experiment, cfg.agent.name, cfg.domain, cfg.obs_type,
                 str(cfg.seed)
@@ -60,7 +61,7 @@ class Experiment:
                                 cfg.num_seed_frames // cfg.action_repeat,
                                 cfg.agent)
         
-    # get meta specs
+        # get meta specs
         meta_specs = self.agent.get_meta_specs()
         # create replay buffer
         data_specs = (self.train_env.observation_spec(),

@@ -1,11 +1,31 @@
-seed: 0
+reward_free: true
 domain: walker
 obs_type: states
-experiment: exp
-device: cpu
+frame_stack: 3
+action_repeat: 1
+discount: 0.99
+num_train_frames: 2000010
+num_seed_frames: 4000
+eval_every_frames: 10000
+num_eval_episodes: 10
+snapshots:
+- 100000
+- 500000
+- 1000000
+- 2000000
+snapshot_dir: ../../../models/${obs_type}/${domain}/${agent.name}/${seed}
+replay_buffer_size: 1000000
+replay_buffer_num_workers: 4
+batch_size: ${agent.batch_size}
+nstep: ${agent.nstep}
+update_encoder: true
+seed: 1
+device: cuda
+save_video: true
+save_train_video: false
 use_tb: false
-wandb:
-  enabled: true
+use_wandb: false
+experiment: exp
 agent:
   _target_: agent.diayn.DIAYNAgent
   name: diayn
