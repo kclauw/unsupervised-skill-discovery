@@ -1,5 +1,5 @@
 #_target_: src.agents.sac.SACAgent
-name: diayn
+name: sac
 parameters:
   reward_free: ${reward_free}
   obs_type: ??? # to be specified later
@@ -7,18 +7,12 @@ parameters:
   action_shape: ??? # to be specified later
   #num_expl_steps: ??? # to be specified later
   #action_bounds: ???
-
-  discriminator_hidden_dim: 300
-
-  #SAC parameters
+  batch_size: 256
+  mem_size: 1e+6
   hidden_dim_critic: 300
   hidden_dim_actor: 300
   q_lr: 3e-4
   policy_lr: 3e-4
-
-  batch_size: 256
-  mem_size: 1e+6
-
   tau: 0.005
   alpha: 0.1
   reward_scale: 1

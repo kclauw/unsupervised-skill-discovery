@@ -3,7 +3,6 @@ import imageio
 import numpy as np
 import wandb
 
-
 class VideoRecorder:
     def __init__(self,
                  root_dir,
@@ -80,6 +79,7 @@ class TrainVideoRecorder:
 
     def record(self, obs):
         if self.enabled:
+            #obs[-3:].transpose(1, 2, 0)
             frame = cv2.resize(obs[-3:].transpose(1, 2, 0),
                                dsize=(self.render_size, self.render_size),
                                interpolation=cv2.INTER_CUBIC)

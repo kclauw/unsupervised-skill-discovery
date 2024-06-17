@@ -1,7 +1,0 @@
-task: individual
-state_representation: position
-seeds: 1
-n_episodes: 100
-device: cpu
-wandb:
-  enabled: false

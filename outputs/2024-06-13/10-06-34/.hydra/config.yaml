@@ -1,4 +1,0 @@
-seed: 0
-device: cpu
-wandb:
-  enabled: false

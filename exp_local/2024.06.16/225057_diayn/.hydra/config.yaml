@@ -1,0 +1,52 @@
+reward_free: true
+obs_type: states
+frame_stack: 3
+action_repeat: 1
+n_skills: 50
+n_episodes: 1000
+max_episode_length: 1000
+log_frequency: 100
+num_train_frames: 2000010
+num_seed_frames: 4000
+eval_every_frames: 10000
+num_eval_episodes: 10
+snapshots:
+- 100000
+- 500000
+- 1000000
+- 2000000
+snapshot_dir: ../../../models/${obs_type}/${domain}/${agent.name}/${seed}
+replay_buffer_size: 1000000
+replay_buffer_num_workers: 4
+update_encoder: true
+seed: 1
+device: cpu
+save_video: true
+save_train_video: true
+use_tb: false
+use_wandb: false
+experiment: exp
+wandb_project: skill-discovery
+agent:
+  name: diayn
+  parameters:
+    reward_free: ${reward_free}
+    obs_type: ???
+    obs_shape: ???
+    action_shape: ???
+    hidden_dim_critic: 300
+    hidden_dim_actor: 300
+    q_lr: 0.0003
+    policy_lr: 0.0003
+    batch_size: 256
+    mem_size: 1000000.0
+    tau: 0.005
+    alpha: 0.1
+    reward_scale: 1
+    gamma: 0.99
+    autotune: false
+    learning_starts: 10
+    policy_frequency: 2
+    target_network_frequency: 1
+env:
+  id: MultiGoal
